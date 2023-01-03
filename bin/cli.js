@@ -17,7 +17,7 @@ limitations under the License.
 
 const fs = require('fs');
 const stream = require('stream/promises');
-const receiptio = require('receiptio');
+const receiptio = require('../lib/receiptio');
 
 (async argv => {
 
@@ -57,7 +57,7 @@ const receiptio = require('receiptio');
             // option without value
             params[key[1]] = true;
         }
-        else if (/^-[dopcrbgtl]$/.test(key)) {
+        else if (/^-[dopcrbgtlm]$/.test(key)) {
             // option with value
             if (i < argv.length - 1) {
                 const value = argv[i + 1];
@@ -95,7 +95,8 @@ options:
                      starimpact, starimpact2, starimpact3, svg, png, text)
                     (png requires puppeteer or sharp)
   -q                check printer status without printing
-  -c <chars>        characters per line (24-96) (default: 48)
+  -c <chars>        characters per line (24-96) (default: 48 - left margin)
+  -m <chars>        characters in left margin (0-96). (default: 0)
   -u                upside down
   -v                landscape orientation (for escpos, epson, sii, citizen, star)
   -r <dpi>          print resolution for -v (180, 203) (default: 203)
