@@ -53,7 +53,7 @@ const receiptio = require('../lib/receiptio');
     // parse arguments
     for (let i = 0; i < argv.length; i++) {
         const key = argv[i];
-        if (/^-[hquvsni]$/.test(key)) {
+        if (/^-[hquvsniR]$/.test(key)) {
             // option without value
             params[key[1]] = true;
         }
@@ -95,6 +95,7 @@ options:
                      starimpact, starimpact2, starimpact3, svg, png, text)
                     (png requires puppeteer or sharp)
   -q                check printer status without printing
+  -R                raw source. Do not transform source and send directly to ptinter.
   -c <chars>        characters per line (24-96) (default: 48 - left margin)
   -m <chars>        characters in left margin (0-96). (default: 0)
   -u                upside down
