@@ -43,7 +43,7 @@
   "dependencies": {
     "iconv-lite": "^0.6.0",
     "pngjs": "^5.0.0",
-    "receiptline": "^1.15.0",
+    "receiptline": "github:parody/receiptline#features/match-debian-default-font",
     "sharp": "^0.31.3"
   },
   "devDependencies": {
