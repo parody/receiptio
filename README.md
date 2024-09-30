@@ -3,7 +3,7 @@
 A print application for receipt printers, simple and easy with markdown, printer status support.  
 
 ```bash
-$ more receiptmd.txt
+$ more receiptmd.receipt
 ^^^RECEIPT
 
 12/18/2021, 11:22:33 AM
@@ -13,7 +13,7 @@ Carrot    | 3| 3.00
 ---
 ^TOTAL | ^6.00
 
-$ receiptio -d 192.168.192.168 -p escpos -c 42 receiptmd.txt
+$ receiptio -d 192.168.192.168 -p escpos -c 42 receiptmd.receipt
 success
 ```
 
@@ -128,14 +128,14 @@ print results:
   success(0), online(100), coveropen(101), paperempty(102),
   error(103), offline(104), disconnect(105), timeout(106)
 examples:
-  receiptio -d COM1 receiptmd.txt
-  receiptio -d /dev/usb/lp0 receiptmd.txt
-  receiptio -d /dev/ttyS0 -u -b 160 receiptmd.txt
-  receiptio -d 192.168.192.168 -p escpos -c 42 receiptmd.txt
+  receiptio -d COM1 receiptmd.receipt
+  receiptio -d /dev/usb/lp0 receiptmd.receipt
+  receiptio -d /dev/ttyS0 -u -b 160 receiptmd.receipt
+  receiptio -d 192.168.192.168 -p escpos -c 42 receiptmd.receipt
   receiptio -d com9 -p impact -q
-  receiptio receiptmd.txt -o receipt.svg
-  receiptio receiptmd.txt -p escpos -i -b 128 -g 1.0 -o receipt.prn
-  receiptio < receiptmd.txt -p png > receipt.png
+  receiptio receiptmd.receipt -o receipt.svg
+  receiptio receiptmd.receipt -p escpos -i -b 128 -g 1.0 -o receipt.prn
+  receiptio < receiptmd.receipt -p png > receipt.png
   echo {c:1234567890} | receiptio | more
 ```
 
@@ -328,7 +328,7 @@ receiptio.print(receiptmd, options).then(result => {
 const fs = require('fs');
 const receiptio = require('receiptio');
 
-const source = fs.createReadStream('example.txt');
+const source = fs.createReadStream('example.receipt');
 const transform = receiptio.createPrint('-p svg');
 const destination = fs.createWriteStream('example.svg');
 
@@ -346,6 +346,30 @@ source.pipe(transform).pipe(destination);
 ### Return value
 
 - Transform stream &lt;stream.Transform&gt;
+
+# Serial port options
+
+```
+-d COM1:115200,N,8,1
+```
+
+- `-d <destination>`
+  - the system path of the serial port
+  - `<system path>[:<options>]`
+- `<options>`
+  - `<baud rate>,<parity>,<data bits>,<stop bits>[,<flow control>]`
+  - default: `115200,N,8,1,N`
+  - commas can be omitted
+- `<baud rate>`
+  - `2400`, `4800`, `9600`, `19200`, `38400`, `57600`, `115200`
+- `<parity>`
+  - `N`: none, `E`: even, `O`: odd
+- `<data bits>`
+  - `8`, `7`
+- `<stop bits>`
+  - `1`, `2`
+- `<flow control>`
+  - `N`: none, `R`: rts/cts, `X`: xon/xoff
 
 # License
 
