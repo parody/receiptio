@@ -1,5 +1,39 @@
 # Changelog
 
+## [2.1.2] - 2025-01-19
+### Fixed
+- For bug fixes in sharp v0.32.4
+
+## [2.1.1] - 2025-01-18
+### Fixed
+- Help messages
+
+## [2.1.0] - 2025-01-17
+### Added
+- Automatic detection by output file extension
+
+## [2.0.0] - 2025-01-11
+### Added
+- Automatic printer detection
+- Cash drawer status
+- "txt" alias for text
+
+### Changed
+- Default gamma correction value to match Receipt.js
+
+### Fixed
+- Buffer length check
+- Missing socket write result save
+- XOFF flow control setting for serial port
+
+## [1.9.0] - 2023-11-15
+### Added
+- Support for new headless mode of puppeteer
+- Serial port options
+
+### Changed
+- File extension from .txt to .receipt
+
 ## [1.8.0] - 2023-02-20
 ### Added
 - Print margin
